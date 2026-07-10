@@ -4,7 +4,6 @@ import {loginUser} from "../services/auth.service.ts";
 
 const LoginPage = () => {
     const navigate = useNavigate();
-    let incidente;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
