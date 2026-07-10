@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Lint & Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -17,4 +17,5 @@ jobs:
           node-version: '24.14.0'
           cache: 'npm'
       - run: npm ci
+      - run: npm run lint
       - run: npm run build

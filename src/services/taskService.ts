@@ -7,7 +7,7 @@ export const createTask = (title: string, desc: string, tags: string[] = []) =>
 
 export const toggleTask = (id: number) => api.patch(`tasks/${id}/toggle`);
 
-export const updateTask = (id: number, data: Record<string, any>) => api.put(`tasks/${id}`, data);
+export const updateTask = (id: number, data: Record<string, unknown>) => api.put(`tasks/${id}`, data);
 
 export const deleteTask = (id: number) => api.delete(`tasks/${id}`);
 
