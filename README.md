@@ -2,7 +2,7 @@
 
 Frontend de una aplicación de gestión de tareas con React, TypeScript y Vite.
 
-<!-- BADGE_CI -->
+[![CI](https://github.com/afpal33/task-manager-frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/afpal33/task-manager-frontend/actions/workflows/ci.yml)
 
 ## 🚀 Instalación local
 
