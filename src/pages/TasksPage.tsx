@@ -39,9 +39,14 @@ const TasksPage = () => {
 
     const addTask = (title: string, desc: string, tagsInput: string) => {
         try {
+            const trimmedTitle = title.trim();
+            if (!trimmedTitle) {
+                return;
+            }
+
             const tagList = tagsInput.split(',').map(t => t.trim()).filter(t => t !== "");
             
-            createTask(title, desc, tagList).then((response) => {
+            createTask(trimmedTitle, desc, tagList).then((response) => {
                 console.log("Task created: ", response.data);
                 setText("");
                 setDescription("");
