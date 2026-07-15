@@ -2,6 +2,18 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {registerUser} from "../services/auth.service.ts";
 
+const getErrorMessage = (error: unknown, fallback: string): string => {
+    if (typeof error === "object" && error !== null && "response" in error) {
+        const response = (error as { response?: { data?: { message?: string } } }).response;
+
+        if (typeof response?.data?.message === "string") {
+            return response.data.message;
+        }
+    }
+
+    return fallback;
+};
+
 const RegisterPage = () => {
     const navigate = useNavigate();
 
@@ -17,8 +29,8 @@ const RegisterPage = () => {
             await registerUser({ name, email, password });
 
             navigate("/login");
-        } catch (e: any) {
-            setError(e?.response?.data?.message || "Registration failed");
+        } catch (error: unknown) {
+            setError(getErrorMessage(error, "Registration failed"));
         }
     };
 
