@@ -9,7 +9,10 @@ type TaskInputProps = {
 
 export const TaskInput = ({ text, setText, description, setDescription, tags, setTags }: TaskInputProps) => (
     <div className="flex flex-col gap-4">
+        <label htmlFor="task-title" className="sr-only">Nueva tarea</label>
         <input
+            id="task-title"
+            aria-label="Nueva tarea"
             type="text"
             value={text}
             onChange={ (e) => setText(e.target.value)}
