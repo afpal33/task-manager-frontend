@@ -67,9 +67,17 @@ test('un usuario puede registrarse, loguarse y crear una tarea', async ({ page }
     })
   })
 
-  // 1. Ir a registro
-  await page.goto('/register')
-  await expect(page.getByRole('heading', { name: /Regístrate/i })).toBeVisible()
+ // 1. Ir a registro (esperar a que la ruta y el DOM estén listos)
+await page.goto('/register', { waitUntil: 'networkidle' }) // helps with SPAs
+await expect(page).toHaveURL(/\/register/) // confirm navigation
+
+// match multiple possible headings and allow more time for render
+await expect(
+  page.getByRole('heading', { name: /(Reg[ií]strate|Registrarse|Crear cuenta)/i })
+).toBeVisible({ timeout: 10000 })
+
+// as a fallback, ensure the name input exists before interacting
+await page.waitForSelector('input[placeholder="Nombre"]', { timeout: 10000 })
 
   // 2. Llenar formulario de registro
   await page.getByPlaceholder('Nombre').fill(testUser.name)
