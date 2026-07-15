@@ -22,7 +22,6 @@ describe('TaskCard', () => {
     expect(screen.getByRole('heading', { name: /Comprar pan/i })).toBeVisible()
     expect(screen.getByText('Leche y huevos')).toBeVisible()
     expect(screen.getByText('#urgente')).toBeVisible()
-    expect(screen.getByText('Este texto no existe')).toBeVisible()
 
     await user.click(screen.getByRole('button', { name: /Completa/i }))
     expect(toggleTask).toHaveBeenCalledWith(task)
